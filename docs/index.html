@@ -3,53 +3,33 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Play Bro — Interactive Preview</title>
+  <meta name="description" content="Play Bro — мобильное пространство для комнат, друзей и совместных игр.">
+  <title>Play Bro — продуктовая витрина</title>
   <style>
-    :root { --ink:#201b3d; --purple:#7055d7; --muted:#6f6887; --bg:#f7f6ff; --card:#fff; --mint:#cff2e4; }
-    * { box-sizing:border-box; } body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.45 Arial, sans-serif; }
-    main { max-width:960px; padding:32px 20px 56px; margin:auto; }
-    header { display:flex; justify-content:space-between; gap:20px; align-items:center; margin-bottom:32px; }
-    .brand { font-weight:800; color:#fff; background:var(--purple); border-radius:999px; padding:9px 16px; letter-spacing:.04em; }
-    .note { color:var(--muted); font-size:14px; text-align:right; }
-    h1 { font-size:clamp(34px,6vw,58px); margin:0 0 8px; line-height:1; } .lead { max-width:620px; color:var(--muted); font-size:19px; }
-    nav { display:flex; flex-wrap:wrap; gap:10px; margin:28px 0; } button { font:inherit; cursor:pointer; border:0; }
-    .tab { background:#e8e2ff; color:var(--ink); padding:10px 15px; border-radius:999px; } .tab.active { background:var(--purple); color:#fff; }
-    .screen { display:none; } .screen.active { display:block; } .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(205px,1fr)); gap:16px; }
-    .card { background:var(--card); padding:20px; min-height:170px; border-radius:22px; box-shadow:0 8px 24px #2d205c12; }
-    .icon { width:40px; height:40px; border-radius:50%; background:var(--purple); display:block; margin-bottom:24px; } .blue{background:#4e82d7}.green{background:#4dad83}.orange{background:#d98f29}
-    h2 { margin:0 0 6px; font-size:23px; } p { margin:0; color:var(--muted); }
-    .phone { width:min(100%,355px); margin:8px auto; background:#fff; border:10px solid #201b3d; border-radius:36px; padding:25px 20px; box-shadow:0 20px 50px #2d205c26; }
-    .avatar { width:64px; height:64px; border-radius:50%; background:linear-gradient(135deg,#ffd293,#7055d7); margin-bottom:12px; }
-    .stat { display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px solid #eeeaf8; color:var(--muted); } .stat strong { color:var(--ink); }
-    .game { text-align:center; padding:20px 0; } #score { font-size:66px; font-weight:800; margin:18px 0; } #tap { padding:22px 30px; border-radius:18px; background:var(--purple); color:#fff; font-weight:700; font-size:20px; box-shadow:0 8px 0 #503ba6; } #tap:active { transform:translateY(5px); box-shadow:0 3px 0 #503ba6; }
-    .status { margin:24px auto 0; max-width:700px; padding:16px 18px; border-radius:16px; background:var(--mint); color:#217a62; }
-    footer { margin-top:38px; color:var(--muted); font-size:14px; } a { color:var(--purple); }
+    :root { --ink:#1f1a3c; --purple:#7055d7; --muted:#6f6887; --canvas:#f7f6ff; --card:#fff; --mint:#d9f4e9; --line:#e7e1fb; }
+    * { box-sizing:border-box; } html { scroll-behavior:smooth; } body { margin:0; color:var(--ink); background:var(--canvas); font:16px/1.5 Arial,sans-serif; }
+    .wrap { width:min(1120px,calc(100% - 40px)); margin:auto; } header { padding:20px 0; display:flex; justify-content:space-between; align-items:center; gap:20px; }
+    .logo { color:#fff; background:var(--purple); border-radius:999px; padding:8px 16px; font-weight:800; letter-spacing:.06em; text-decoration:none; } nav { display:flex; gap:18px; flex-wrap:wrap; } nav a { color:var(--muted); text-decoration:none; font-weight:700; }
+    .hero { padding:64px 0 72px; background:radial-gradient(circle at 92% 8%,#e5defe 0 190px,transparent 191px),radial-gradient(circle at 0 100%,#d2f5e4 0 130px,transparent 131px); }
+    .eyebrow { color:var(--purple); font-weight:800; letter-spacing:.08em; text-transform:uppercase; font-size:13px; } h1 { max-width:800px; margin:14px 0 20px; font-size:clamp(42px,7vw,76px); line-height:.98; letter-spacing:-.05em; } .lead { max-width:680px; color:var(--muted); font-size:20px; }
+    .facts { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; max-width:720px; margin-top:32px; } .fact { padding:16px; border-radius:16px; background:#fff; box-shadow:0 10px 25px #2719510d; } .fact b { display:block; font-size:24px; } .fact span { color:var(--muted); font-size:14px; }
+    section { padding:70px 0; } h2 { margin:0 0 12px; font-size:clamp(28px,4vw,42px); letter-spacing:-.035em; } .section-lead { max-width:650px; color:var(--muted); font-size:18px; }
+    .screens { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:32px; } .screen { margin:0; background:var(--card); border:1px solid var(--line); border-radius:26px; padding:12px 12px 18px; box-shadow:0 16px 42px #2719510d; } .screen img { display:block; width:100%; border-radius:18px; } figcaption { padding:14px 8px 0; font-weight:800; } figcaption span { display:block; margin-top:3px; color:var(--muted); font-size:14px; font-weight:400; }
+    .flows { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:30px; } .flow { min-height:150px; border-radius:22px; background:var(--card); padding:24px; border:1px solid var(--line); } .flow i { display:block; width:12px; height:12px; border-radius:50%; background:var(--purple); margin-bottom:28px; } .flow:nth-child(2) i { background:#4e82d7; } .flow:nth-child(3) i { background:#4dad83; } .flow:nth-child(4) i { background:#d98f29; } .flow h3 { margin:0 0 7px; font-size:20px; } .flow p { margin:0; color:var(--muted); }
+    .reality { background:var(--mint); border-radius:30px; padding:28px; margin-top:28px; } .reality h3 { margin:0 0 8px; font-size:21px; } .reality p { margin:0; color:#2f6253; max-width:780px; }
+    .cta { padding:54px 0 70px; } .cta-box { padding:40px; border-radius:30px; background:var(--ink); color:#fff; } .cta-box h2 { max-width:650px; } .cta-box p { max-width:650px; color:#d9d3ee; } .button { display:inline-block; margin-top:23px; padding:13px 18px; background:#fff; color:var(--ink); text-decoration:none; font-weight:800; border-radius:12px; }
+    footer { border-top:1px solid var(--line); padding:26px 0 34px; color:var(--muted); font-size:14px; } footer a { color:var(--purple); }
+    @media (max-width:720px) { .wrap { width:min(100% - 28px,1120px); } header { align-items:flex-start; } nav { justify-content:flex-end; gap:10px; font-size:14px; } .hero { padding-top:42px; } .facts,.screens,.flows { grid-template-columns:1fr; } section { padding:48px 0; } .cta-box { padding:28px; } }
   </style>
 </head>
-<body><main>
-  <header><span class="brand">PLAY BRO</span><span class="note">Интерактивное превью<br>для Digital Bridge 2026</span></header>
-  <h1>Игры, в которые проще зайти вместе.</h1>
-  <p class="lead">Исследуйте ключевые сценарии продукта и сыграйте короткую презентационную сессию Tap Battle.</p>
-  <nav><button class="tab active" data-screen="catalog">Каталог игр</button><button class="tab" data-screen="profile">Профиль</button><button class="tab" data-screen="tapbattle">Tap Battle</button></nav>
-  <section id="catalog" class="screen active"><div class="grid">
-    <article class="card"><i class="icon"></i><h2>Tap Battle</h2><p>1 на 1 · 30 секунд<br>Мгновенная мини-игра.</p></article>
-    <article class="card"><i class="icon blue"></i><h2>Trivia Brawl</h2><p>2–6 игроков · 5 раундов<br>Вопросы для компании.</p></article>
-    <article class="card"><i class="icon green"></i><h2>Дурак</h2><p>1 на 1 · онлайн<br>Знакомая карточная игра.</p></article>
-    <article class="card"><i class="icon orange"></i><h2>Бункер</h2><p>4–8 игроков · голос<br>Дедукция и обсуждение.</p></article>
-  </div></section>
-  <section id="profile" class="screen"><div class="phone"><div class="avatar"></div><h2>Olzhas</h2><p>@playbro</p><div class="stat"><span>Уровень</span><strong>12</strong></div><div class="stat"><span>XP</span><strong>2 480</strong></div><div class="stat"><span>Монеты</span><strong>760</strong></div><div class="stat"><span>Любимая игра</span><strong>Trivia Brawl</strong></div></div></section>
-  <section id="tapbattle" class="screen"><div class="phone game"><p>Tap Battle · презентационная сессия</p><div id="score">0</div><button id="tap">Тап!</button><p id="message" style="margin-top:18px">Нажмите кнопку, чтобы начать.</p></div></section>
-  <p class="status">Это автономная интерактивная витрина для жюри. Реальные multiplayer-матчи доступны в закрытой мобильной beta через TestFlight.</p>
-  <footer>Play Bro · Kazakhstan · <a href="https://github.com/shutovBro/play-bro-showcase">GitHub showcase</a></footer>
-</main><script>
-  document.querySelectorAll('.tab').forEach(button => button.addEventListener('click', () => {
-    document.querySelectorAll('.tab,.screen').forEach(item => item.classList.remove('active'));
-    button.classList.add('active'); document.getElementById(button.dataset.screen).classList.add('active');
-  }));
-  let score = 0, started = false, timer;
-  const scoreNode = document.getElementById('score'), message = document.getElementById('message');
-  document.getElementById('tap').addEventListener('click', () => {
-    if (!started) { started = true; score = 0; message.textContent = '10 секунд — вперёд!'; clearTimeout(timer); timer = setTimeout(() => { started=false; message.textContent=`Сессия завершена: ${score} очков. Реванш?`; }, 10000); }
-    if (started) { score++; scoreNode.textContent = score; }
-  });
-</script></body></html>
+<body>
+  <div class="wrap"><header><a class="logo" href="#top">PLAY BRO</a><nav><a href="#screens">Интерфейс</a><a href="#flows">Сценарии</a><a href="https://github.com/shutovBro/play-bro-showcase">GitHub</a></nav></header></div>
+  <main id="top">
+    <section class="hero"><div class="wrap"><span class="eyebrow">Kazakhstan · Mobile social gaming</span><h1>Комнаты, друзья и игры — в одном приложении.</h1><p class="lead">Play Bro помогает собраться онлайн: открыть комнату, пригласить друзей, выбрать игру, следить за прогрессом и оставаться на связи.</p><div class="facts"><div class="fact"><b>5 разделов</b><span>Комнаты, друзья, игры, лента, профиль</span></div><div class="fact"><b>3 режима</b><span>Trivia Brawl, Дурак, Бункер</span></div><div class="fact"><b>iOS + Android</b><span>Flutter-приложение</span></div></div></div></section>
+    <section id="screens"><div class="wrap"><span class="eyebrow">Реальный интерфейс</span><h2>Так выглядит Play Bro сейчас</h2><p class="section-lead">Скриншоты ниже сделаны из приложения. Это не отрисовка и не макет отдельного сайта.</p><div class="screens"><figure class="screen"><img src="../assets/profile.jpg" alt="Профиль игрока Play Bro"><figcaption>Профиль и прогресс<span>Аватар, XP, монеты, серия и инвентарь игрока.</span></figcaption></figure><figure class="screen"><img src="../assets/shop.jpg" alt="Экран косметики Play Bro"><figcaption>Косметика и инвентарь<span>Предметы для персонализации профиля и комнат.</span></figcaption></figure><figure class="screen"><img src="../assets/settings.jpg" alt="Настройки Play Bro"><figcaption>Настройки и приватность<span>Язык, профиль, безопасность и управление аккаунтом.</span></figcaption></figure></div></div></section>
+    <section id="flows"><div class="wrap"><span class="eyebrow">Ключевые сценарии</span><h2>Приложение строится вокруг совместного времени</h2><div class="flows"><article class="flow"><i></i><h3>Комнаты и голос</h3><p>Создать открытую или приватную комнату, позвать друзей и общаться во время игры.</p></article><article class="flow"><i></i><h3>Друзья и приглашения</h3><p>Добавлять игроков, видеть взаимные связи и отправлять игровые приглашения.</p></article><article class="flow"><i></i><h3>Игры и результаты</h3><p>Выбирать режим, играть вместе и возвращаться за прогрессом, историей и реваншем.</p></article><article class="flow"><i></i><h3>Лента и профиль</h3><p>Делиться активностью, видеть события друзей, управлять своим профилем и приватностью.</p></article></div><div class="reality"><h3>Что доступно в beta</h3><p>Комнаты, друзья, каталог игр, профиль, лента, комментарии, XP, монеты, достижения, история матчей, настройки и инструменты безопасности. Доступ к мобильной beta-сборке выдаётся через TestFlight по приглашению.</p></div></div></section>
+    <section class="cta"><div class="wrap"><div class="cta-box"><span class="eyebrow" style="color:#b9aaff">Play Bro · Digital Bridge 2026</span><h2>Публичная витрина продукта</h2><p>В репозитории собраны описание, реальные экраны приложения и презентация. Исходный код, инфраструктура и пользовательские данные не публикуются.</p><a class="button" href="https://github.com/shutovBro/play-bro-showcase">Открыть GitHub-репозиторий</a></div></div></section>
+  </main>
+  <footer><div class="wrap">Play Bro · Kazakhstan · <a href="https://github.com/shutovBro/play-bro-showcase">GitHub showcase</a></div></footer>
+</body>
+</html>

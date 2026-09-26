@@ -1,69 +1,43 @@
 # Play Bro
 
-> A social gaming platform where finding a game is as easy as opening a chat.
+> Мобильное пространство для комнат, друзей и совместных игр.
 
-**Play Bro** brings lightweight multiplayer games, live rooms, friends and a
-shared player profile into one mobile experience. It is being built as a
-Kazakhstan-born product for people who want to spend time together online,
-without learning a complex game first.
+[Открыть публичную витрину Play Bro](https://shutovbro.github.io/play-bro-showcase/)
 
-![Play Bro games catalog](assets/games-catalog.jpg)
+Play Bro — продукт из Казахстана для коротких совместных игровых сессий.
+Приложение объединяет комнаты, список друзей, каталог игр, социальную ленту,
+профиль игрока и прогрессию в одном мобильном интерфейсе.
 
-## Посмотреть вживую
+![Реальный экран профиля Play Bro](assets/profile.jpg)
 
-[Открыть интерактивное превью Play Bro](https://shutovBro.github.io/play-bro-showcase/) — рабочая браузерная витрина с игровым каталогом, профилем и короткой Tap Battle-сессией. Это автономная презентационная версия: она не подключается к production backend.
+## Что можно увидеть в приложении
 
-Доступ к настоящей мобильной beta-сборке выдаётся через TestFlight по приглашению.
-
-## The idea
-
-Most casual multiplayer games make people choose between a game, a group chat
-and a voice room. Play Bro keeps that loop in one place:
-
-`join a room -> find friends -> play -> get a result -> play again`
-
-The product is designed for short, social sessions. Players can enter a room,
-invite a friend, play a quick game, earn progression and keep the interaction
-going through a feed and profile.
-
-## Current product
-
-| Area | What is available |
+| Раздел | Реальный сценарий |
 | --- | --- |
-| Games | Tap Battle, Trivia Brawl, online Durak and Bunker |
-| Social | public/private rooms, friends, invitations, feed and comments |
-| Progression | XP, coins, cosmetics, achievements and match history |
-| Identity | profile, avatar, nickname and privacy controls |
-| Safety | server-side profanity filter, reports, blocks and account deletion flow |
+| Комнаты | создать или выбрать открытую комнату, общаться голосом и приглашать друзей |
+| Друзья | добавлять людей, видеть взаимные связи и отправлять приглашения |
+| Игры | выбирать Trivia Brawl, онлайн-Дурак или Бункер |
+| Лента | публиковать посты, смотреть активность друзей и комментировать |
+| Профиль | управлять аватаром, никнеймом, XP, монетами, серией и инвентарём |
+| Настройки | менять язык и приватность, работать с блокировками и удалением аккаунта |
 
-The project is in a beta prototype stage. Multiplayer logic is authoritative on
-the server and the current build has automated Flutter, HTTP and realtime
-scenario checks. Production infrastructure and device validation remain the
-next operational milestones.
+Публичная витрина показывает только реальные интерфейсы приложения. Доступ к
+мобильной beta-сборке выдаётся через TestFlight по приглашению.
 
-## Why it matters
+## Технологии
 
-Play Bro is aimed at a familiar problem in the region: people want a simple way
-to meet, talk and play online, but existing products are either too focused on
-one game or require switching between several apps. The platform model lets us
-add new social game formats while keeping one identity, friends graph and
-progression system.
-
-## Technology
-
-- Flutter for iOS and Android
-- Nakama authoritative multiplayer runtime with TypeScript
-- PostgreSQL for product data
-- LiveKit for voice-room infrastructure
-- Firebase Cloud Messaging and Sentry for product operations
+- Flutter для iOS и Android
+- Nakama и TypeScript для realtime-сценариев
+- PostgreSQL, LiveKit, Firebase Cloud Messaging и Sentry
 
 ## Presentation materials
 
 - [Digital Bridge presentation PDF](Play_Bro_Digital_Bridge.pdf)
-- [Interactive preview](https://shutovBro.github.io/play-bro-showcase/)
+- [Публичная витрина приложения](https://shutovbro.github.io/play-bro-showcase/)
 - [Games catalog](assets/games-catalog.jpg)
 - [Player profile](assets/profile.jpg)
 - [Cosmetic shop](assets/shop.jpg)
+- [Settings](assets/settings.jpg)
 
 ## Repository scope
 

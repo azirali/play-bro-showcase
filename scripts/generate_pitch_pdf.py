@@ -131,22 +131,21 @@ def product(c):
 
 
 def games(c):
-    text(c, "Четыре формата, один социальный слой", 42, H - 75, 25, INK, True)
+    text(c, "Три формата, один социальный слой", 42, H - 75, 25, INK, True)
     games = [
-        ("Tap Battle", "1 на 1, 30 секунд", "Мгновенная соревновательная мини-игра.", PURPLE),
         ("Trivia Brawl", "2-6 игроков, 5 раундов", "Быстрые вопросы для компании.", HexColor("#507BE8")),
-        ("Дурак", "1 на 1, онлайн", "Знакомая карточная игра с авторитарной логикой сервера.", HexColor("#1D5A9B")),
+        ("Дурак", "1 на 1, онлайн", "Карточная игра с авторитарной логикой сервера.", HexColor("#1D5A9B")),
         ("Бункер", "4-8 игроков, голос", "Социальная дедукция и обсуждение в комнате.", HexColor("#C98416")),
     ]
-    # Keep the top cards below the headline; the previous coordinates covered it.
-    positions = [(42, H - 245), (310, H - 245), (42, H - 430), (310, H - 430)]
-    for (title, meta, desc, accent), (x, y) in zip(games, positions):
-        rounded(c, x, y, 244, 145, WHITE, 22)
+    y = H - 235
+    for title, meta, desc, accent in games:
+        rounded(c, 42, y, W - 84, 104, WHITE, 22)
         c.setFillColor(accent)
-        c.circle(x + 34, y + 110, 16, stroke=0, fill=1)
-        text(c, title, x + 60, y + 103, 15, INK, True)
-        text(c, meta, x + 24, y + 72, 10, accent, True)
-        text(c, wrap(c, desc, 195, 10), x + 24, y + 48, 10, MUTED, False, 13)
+        c.circle(76, y + 52, 18, stroke=0, fill=1)
+        text(c, title, 112, y + 63, 16, INK, True)
+        text(c, meta, 112, y + 42, 10, accent, True)
+        text(c, wrap(c, desc, W - 185, 10), 112, y + 22, 10, MUTED, False, 13)
+        y -= 126
     rounded(c, 42, 95, W - 84, 74, MINT, 20)
     text(c, "Принцип каталога", 64, 141, 12, HexColor("#217A62"), True)
     card_copy(c, "Не обещаем недоступные режимы и не показываем вымышленный онлайн. Каждая карточка ведёт к реальному сценарию.", 64, 125, W - 128, 10, INK, False, 13)
@@ -156,7 +155,7 @@ def games(c):
 def screenshots(c):
     text(c, "Интерфейс: знакомый, лёгкий, игровой", 42, H - 75, 25, INK, True)
     text(c, "Светлая визуальная система, короткие действия и единый аватар во всех социальных местах.", 42, H - 103, 12, MUTED)
-    images = [("games-catalog.jpg", "Каталог игр"), ("profile.jpg", "Профиль игрока"), ("shop.jpg", "Прогрессия и косметика")]
+    images = [("profile.jpg", "Профиль игрока"), ("shop.jpg", "Прогрессия и косметика"), ("settings.jpg", "Настройки и приватность")]
     x = 42
     for filename, caption in images:
         rounded(c, x, 172, 156, 442, WHITE, 22)
@@ -206,7 +205,7 @@ def market(c):
     text(c, "Куда развивается Play Bro", 42, H - 75, 25, INK, True)
     text(c, "Движение от ранней компании игроков к повторяемому социальному продукту.", 42, H - 103, 12, MUTED)
     columns = [
-        ("Сейчас", ["Закрытая beta", "4 доступных игровых режима", "Единый профиль и прогресс"], PURPLE),
+        ("Сейчас", ["Закрытая beta", "3 игровых режима", "Единый профиль и прогресс"], PURPLE),
         ("Следующий этап", ["Надёжный production backend", "Тестирование на устройствах", "Расширение Trivia и реванши"], HexColor("#4E82D7")),
         ("Дальше", ["Новые социальные игры", "Creator / community механики", "Региональные сообщества"], HexColor("#4DAD83")),
     ]
@@ -240,7 +239,7 @@ def close(c):
     text(c, "Play Bro", 42, H - 150, 38, INK, True)
     text(c, "Игры, в которые проще зайти вместе.", 42, H - 193, 18, MUTED)
     rounded(c, 42, 220, W - 84, 124, WHITE, 24)
-    text(c, "Интерактивное превью", 66, 302, 12, PURPLE, True)
+    text(c, "Публичная витрина", 66, 302, 12, PURPLE, True)
     text(c, "shutovBro.github.io/play-bro-showcase", 66, 274, 14, INK, True)
     text(c, "Olzhas Azirali  |  Founder  |  Kazakhstan", 66, 242, 12, MUTED)
     text(c, "Спасибо", 42, 128, 22, INK, True)
