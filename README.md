@@ -34,7 +34,6 @@ Play Bro — продукт из Казахстана для коротких с
 
 - [Digital Bridge presentation PDF](Play_Bro_Digital_Bridge.pdf)
 - [Публичная витрина приложения](https://shutovbro.github.io/play-bro-showcase/)
-- [Games catalog](assets/games-catalog.jpg)
 - [Player profile](assets/profile.jpg)
 - [Cosmetic shop](assets/shop.jpg)
 - [Settings](assets/settings.jpg)
