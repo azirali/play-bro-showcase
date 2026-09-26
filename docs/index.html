@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Play Bro — Interactive Preview</title>
+  <style>
+    :root { --ink:#201b3d; --purple:#7055d7; --muted:#6f6887; --bg:#f7f6ff; --card:#fff; --mint:#cff2e4; }
+    * { box-sizing:border-box; } body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.45 Arial, sans-serif; }
+    main { max-width:960px; padding:32px 20px 56px; margin:auto; }
+    header { display:flex; justify-content:space-between; gap:20px; align-items:center; margin-bottom:32px; }
+    .brand { font-weight:800; color:#fff; background:var(--purple); border-radius:999px; padding:9px 16px; letter-spacing:.04em; }
+    .note { color:var(--muted); font-size:14px; text-align:right; }
+    h1 { font-size:clamp(34px,6vw,58px); margin:0 0 8px; line-height:1; } .lead { max-width:620px; color:var(--muted); font-size:19px; }
+    nav { display:flex; flex-wrap:wrap; gap:10px; margin:28px 0; } button { font:inherit; cursor:pointer; border:0; }
+    .tab { background:#e8e2ff; color:var(--ink); padding:10px 15px; border-radius:999px; } .tab.active { background:var(--purple); color:#fff; }
+    .screen { display:none; } .screen.active { display:block; } .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(205px,1fr)); gap:16px; }
+    .card { background:var(--card); padding:20px; min-height:170px; border-radius:22px; box-shadow:0 8px 24px #2d205c12; }
+    .icon { width:40px; height:40px; border-radius:50%; background:var(--purple); display:block; margin-bottom:24px; } .blue{background:#4e82d7}.green{background:#4dad83}.orange{background:#d98f29}
+    h2 { margin:0 0 6px; font-size:23px; } p { margin:0; color:var(--muted); }
+    .phone { width:min(100%,355px); margin:8px auto; background:#fff; border:10px solid #201b3d; border-radius:36px; padding:25px 20px; box-shadow:0 20px 50px #2d205c26; }
+    .avatar { width:64px; height:64px; border-radius:50%; background:linear-gradient(135deg,#ffd293,#7055d7); margin-bottom:12px; }
+    .stat { display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px solid #eeeaf8; color:var(--muted); } .stat strong { color:var(--ink); }
+    .game { text-align:center; padding:20px 0; } #score { font-size:66px; font-weight:800; margin:18px 0; } #tap { padding:22px 30px; border-radius:18px; background:var(--purple); color:#fff; font-weight:700; font-size:20px; box-shadow:0 8px 0 #503ba6; } #tap:active { transform:translateY(5px); box-shadow:0 3px 0 #503ba6; }
+    .status { margin:24px auto 0; max-width:700px; padding:16px 18px; border-radius:16px; background:var(--mint); color:#217a62; }
+    footer { margin-top:38px; color:var(--muted); font-size:14px; } a { color:var(--purple); }
+  </style>
+</head>
+<body><main>
+  <header><span class="brand">PLAY BRO</span><span class="note">Интерактивное превью<br>для Digital Bridge 2026</span></header>
+  <h1>Игры, в которые проще зайти вместе.</h1>
+  <p class="lead">Исследуйте ключевые сценарии продукта и сыграйте короткую презентационную сессию Tap Battle.</p>
+  <nav><button class="tab active" data-screen="catalog">Каталог игр</button><button class="tab" data-screen="profile">Профиль</button><button class="tab" data-screen="tapbattle">Tap Battle</button></nav>
+  <section id="catalog" class="screen active"><div class="grid">
+    <article class="card"><i class="icon"></i><h2>Tap Battle</h2><p>1 на 1 · 30 секунд<br>Мгновенная мини-игра.</p></article>
+    <article class="card"><i class="icon blue"></i><h2>Trivia Brawl</h2><p>2–6 игроков · 5 раундов<br>Вопросы для компании.</p></article>
+    <article class="card"><i class="icon green"></i><h2>Дурак</h2><p>1 на 1 · онлайн<br>Знакомая карточная игра.</p></article>
+    <article class="card"><i class="icon orange"></i><h2>Бункер</h2><p>4–8 игроков · голос<br>Дедукция и обсуждение.</p></article>
+  </div></section>
+  <section id="profile" class="screen"><div class="phone"><div class="avatar"></div><h2>Olzhas</h2><p>@playbro</p><div class="stat"><span>Уровень</span><strong>12</strong></div><div class="stat"><span>XP</span><strong>2 480</strong></div><div class="stat"><span>Монеты</span><strong>760</strong></div><div class="stat"><span>Любимая игра</span><strong>Trivia Brawl</strong></div></div></section>
+  <section id="tapbattle" class="screen"><div class="phone game"><p>Tap Battle · презентационная сессия</p><div id="score">0</div><button id="tap">Тап!</button><p id="message" style="margin-top:18px">Нажмите кнопку, чтобы начать.</p></div></section>
+  <p class="status">Это автономная интерактивная витрина для жюри. Реальные multiplayer-матчи доступны в закрытой мобильной beta через TestFlight.</p>
+  <footer>Play Bro · Kazakhstan · <a href="https://github.com/shutovBro/play-bro-showcase">GitHub showcase</a></footer>
+</main><script>
+  document.querySelectorAll('.tab').forEach(button => button.addEventListener('click', () => {
+    document.querySelectorAll('.tab,.screen').forEach(item => item.classList.remove('active'));
+    button.classList.add('active'); document.getElementById(button.dataset.screen).classList.add('active');
+  }));
+  let score = 0, started = false, timer;
+  const scoreNode = document.getElementById('score'), message = document.getElementById('message');
+  document.getElementById('tap').addEventListener('click', () => {
+    if (!started) { started = true; score = 0; message.textContent = '10 секунд — вперёд!'; clearTimeout(timer); timer = setTimeout(() => { started=false; message.textContent=`Сессия завершена: ${score} очков. Реванш?`; }, 10000); }
+    if (started) { score++; scoreNode.textContent = score; }
+  });
+</script></body></html>

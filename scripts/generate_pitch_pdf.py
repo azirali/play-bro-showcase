@@ -83,6 +83,13 @@ def bullet(c, label, detail, x, y, w, color=PURPLE):
     return y - 15 - len(lines) * 13 - 13
 
 
+def card_copy(c, value, x, y, width, size=12, color=INK, bold=False, leading=None):
+    """Draw bounded copy inside a card so long Russian text never runs off page."""
+    lines = wrap(c, value, width, size, bold)
+    text(c, lines, x, y, size, color, bold, leading)
+    return lines
+
+
 def cover(c):
     c.setFillColor(BG)
     c.rect(0, 0, W, H, stroke=0, fill=1)
@@ -119,7 +126,7 @@ def product(c):
         y -= 104
     rounded(c, 42, 88, W - 84, 74, LILAC, 20)
     text(c, "Цель продукта", 64, 134, 12, PURPLE, True)
-    text(c, "Сделать онлайн-время с друзьями проще: один профиль, одна компания, много форматов игры.", 64, 110, 13, INK)
+    card_copy(c, "Сделать онлайн-время с друзьями проще: один профиль, одна компания, много форматов игры.", 64, 119, W - 128, 12, INK, False, 15)
     footer(c, 2)
 
 
@@ -131,7 +138,8 @@ def games(c):
         ("Дурак", "1 на 1, онлайн", "Знакомая карточная игра с авторитарной логикой сервера.", HexColor("#1D5A9B")),
         ("Бункер", "4-8 игроков, голос", "Социальная дедукция и обсуждение в комнате.", HexColor("#C98416")),
     ]
-    positions = [(42, H - 210), (310, H - 210), (42, H - 395), (310, H - 395)]
+    # Keep the top cards below the headline; the previous coordinates covered it.
+    positions = [(42, H - 245), (310, H - 245), (42, H - 430), (310, H - 430)]
     for (title, meta, desc, accent), (x, y) in zip(games, positions):
         rounded(c, x, y, 244, 145, WHITE, 22)
         c.setFillColor(accent)
@@ -141,7 +149,7 @@ def games(c):
         text(c, wrap(c, desc, 195, 10), x + 24, y + 48, 10, MUTED, False, 13)
     rounded(c, 42, 95, W - 84, 74, MINT, 20)
     text(c, "Принцип каталога", 64, 141, 12, HexColor("#217A62"), True)
-    text(c, "Не обещаем недоступные режимы и не показываем вымышленный онлайн. Каждая карточка ведёт к реальному сценарию.", 64, 117, 12, INK)
+    card_copy(c, "Не обещаем недоступные режимы и не показываем вымышленный онлайн. Каждая карточка ведёт к реальному сценарию.", 64, 125, W - 128, 10, INK, False, 13)
     footer(c, 3)
 
 
@@ -173,7 +181,7 @@ def platform(c):
     for label, detail, color in layers:
         rounded(c, 42, y, W - 84, 58, WHITE, 16)
         c.setFillColor(color)
-        c.roundRect(42, y, 12, 58, 16, stroke=0, fill=1)
+        c.rect(42, y, 12, 58, stroke=0, fill=1)
         text(c, label, 74, y + 32, 13, INK, True)
         text(c, detail, 74, y + 15, 10, MUTED)
         y -= 76
@@ -190,7 +198,7 @@ def maturity(c):
     y = bullet(c, "Качество", "264 Flutter-теста, HTTP-проверки backend и CI для основных сценариев на момент подготовки материалов.", 50, y, W - 100, HexColor("#4E82D7"))
     rounded(c, 42, 86, W - 84, 72, LILAC, 20)
     text(c, "Текущий этап", 64, 132, 12, PURPLE, True)
-    text(c, "Beta prototype. Следующие задачи: production-инфраструктура, тесты на устройствах и расширение контентной базы Trivia.", 64, 108, 12, INK)
+    card_copy(c, "Beta prototype. Следующие задачи: production-инфраструктура, тесты на устройствах и расширение контентной базы Trivia.", 64, 117, W - 128, 10, INK, False, 13)
     footer(c, 6)
 
 
@@ -218,7 +226,7 @@ def market(c):
         x += 176
     rounded(c, 42, 104, W - 84, 80, MINT, 20)
     text(c, "Для Digital Bridge", 64, 147, 12, HexColor("#217A62"), True)
-    text(c, "Ищем экспертную обратную связь, пилотные сообщества и партнёров, которые помогут вывести продукт к первым активным группам пользователей.", 64, 122, 12, INK)
+    card_copy(c, "Ищем экспертную обратную связь, пилотные сообщества и партнёров, которые помогут вывести продукт к первым активным группам пользователей.", 64, 138, W - 128, 10, INK, False, 13)
     footer(c, 7)
 
 
@@ -232,8 +240,8 @@ def close(c):
     text(c, "Play Bro", 42, H - 150, 38, INK, True)
     text(c, "Игры, в которые проще зайти вместе.", 42, H - 193, 18, MUTED)
     rounded(c, 42, 220, W - 84, 124, WHITE, 24)
-    text(c, "Публичная витрина", 66, 302, 12, PURPLE, True)
-    text(c, "github.com/shutovBro/play-bro-showcase", 66, 274, 15, INK, True)
+    text(c, "Интерактивное превью", 66, 302, 12, PURPLE, True)
+    text(c, "shutovBro.github.io/play-bro-showcase", 66, 274, 14, INK, True)
     text(c, "Olzhas Azirali  |  Founder  |  Kazakhstan", 66, 242, 12, MUTED)
     text(c, "Спасибо", 42, 128, 22, INK, True)
     text(c, "Thank you", 42, 99, 13, MUTED)

@@ -9,6 +9,12 @@ without learning a complex game first.
 
 ![Play Bro games catalog](assets/games-catalog.jpg)
 
+## Посмотреть вживую
+
+[Открыть интерактивное превью Play Bro](https://shutovBro.github.io/play-bro-showcase/) — рабочая браузерная витрина с игровым каталогом, профилем и короткой Tap Battle-сессией. Это автономная презентационная версия: она не подключается к production backend.
+
+Доступ к настоящей мобильной beta-сборке выдаётся через TestFlight по приглашению.
+
 ## The idea
 
 Most casual multiplayer games make people choose between a game, a group chat
@@ -54,6 +60,7 @@ progression system.
 ## Presentation materials
 
 - [Digital Bridge presentation PDF](Play_Bro_Digital_Bridge.pdf)
+- [Interactive preview](https://shutovBro.github.io/play-bro-showcase/)
 - [Games catalog](assets/games-catalog.jpg)
 - [Player profile](assets/profile.jpg)
 - [Cosmetic shop](assets/shop.jpg)
@@ -69,4 +76,3 @@ data.
 **Olzhas Azirali**  
 Play Bro, Kazakhstan  
 GitHub: [@shutovBro](https://github.com/shutovBro)
-
