@@ -15,8 +15,8 @@ from reportlab.pdfgen import canvas
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "docs" / "assets"
 OUT = ROOT / "Play_Bro_Digital_Bridge.pdf"
-WEB = "https://shutovbro.github.io/play-bro-showcase/"
-REPO = "https://github.com/shutovBro/play-bro-showcase"
+WEB = "https://azirali.github.io/play-bro-showcase/"
+REPO = "https://github.com/azirali/play-bro-showcase"
 W, H = 960, 540
 
 INK = HexColor("#211A3B")
@@ -291,9 +291,9 @@ def close(c):
     box(c, 563, 102, 344, 333, white, 22)
     qr(c, WEB, 637, 190, 190)
     txt(c, "ОТКРЫТЬ ВИТРИНУ", 645, 158, 13, INK, True)
-    txt(c, "shutovbro.github.io/play-bro-showcase", 593, 133, 11, MUTED)
+    txt(c, "azirali.github.io/play-bro-showcase", 593, 133, 11, MUTED)
     c.linkURL(WEB, (563, 102, 907, 435), relative=0)
-    txt(c, "Olzhas Azirali  ·  github.com/shutovBro", 52, 75, 12, white)
+    txt(c, "Olzhas Azirali  ·  github.com/azirali", 52, 75, 12, white)
     c.linkURL(REPO, (52, 62, 440, 88), relative=0)
     footer(c, 9, True)
 
